@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kantoorwerktijd planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Kantoorwerktijd planner</h1>
+
+    <form id="time-form" novalidate>
+      <fieldset>
+        <legend>Werkdag</legend>
+
+        <div class="field">
+          <label for="work-hours">Werkduur (uren)</label>
+          <input type="number" id="work-hours" name="workHours" inputmode="numeric" min="1" max="24" step="0.25" value="8" required aria-describedby="work-hours-hint" />
+          <small id="work-hours-hint" class="hint">Standaard 8 uur per dag, weekdoel 40 uur</small>
+        </div>
+
+        <div class="field inline">
+          <label for="start-time">Starttijd (24u)</label>
+          <input type="time" id="start-time" name="startTime" required />
+          <button type="button" id="now-btn" class="secondary">Nu</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pauzes</legend>
+
+        <div id="breaks" class="breaks-list"></div>
+
+        <div class="buttons-row">
+          <button type="button" id="add-coffee" class="secondary">+ Koffiepauze</button>
+          <button type="button" id="add-lunch" class="secondary">+ Lunchpauze</button>
+          <button type="button" id="add-custom" class="secondary">+ Eigen pauze</button>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="primary">Bereken eindtijd</button>
+        <button type="button" id="reset-btn" class="ghost">Reset</button>
+      </div>
+
+      <div id="errors" class="errors" role="alert" aria-live="assertive"></div>
+
+      <section class="result" aria-labelledby="result-heading">
+        <h2 id="result-heading">Resultaat</h2>
+        <p>
+          Voorgestelde vertrektijd:
+          <output id="end-time" for="start-time work-hours">—:—</output>
+        </p>
+        <p>
+          Resterende werktijd:
+          <output id="time-left">—</output>
+        </p>
+        <p>
+          Weektotaal:
+          <output id="week-total">40:00</output>
+        </p>
+        <div id="status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+      </section>
+
+      <details>
+        <summary>Geavanceerd</summary>
+        <label class="checkbox">
+          <input type="checkbox" id="persist" /> Instellingen onthouden op dit apparaat
+        </label>
+      </details>
+    </form>
+  </main>
+
+  <template id="break-row">
+    <div class="break-row">
+      <div class="field">
+        <label>Type</label>
+        <select class="break-type">
+          <option value="coffee">Koffie</option>
+          <option value="lunch">Lunch</option>
+          <option value="other">Overig</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Voor/Na start</label>
+        <select class="break-position">
+          <option value="after">Na start</option>
+          <option value="before">Voor start</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Duur (minuten)</label>
+        <input type="number" class="break-mins" inputmode="numeric" min="1" max="300" step="1" value="15" />
+      </div>
+      <div class="field inline-end">
+        <button type="button" class="ghost remove-break" aria-label="Verwijder pauze">Verwijder</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
