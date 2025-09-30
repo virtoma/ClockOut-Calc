@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="nl">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kantoor werktijd planner</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <main>
     <h1>Kantoor werktijd planner</h1>
@@ -16,7 +18,8 @@
 
         <div class="field">
           <label for="work-hours">Werkduur (uren)</label>
-          <input type="number" id="work-hours" name="workHours" inputmode="numeric" min="1" max="24" step="0.25" value="8" required aria-describedby="work-hours-hint" />
+          <input type="number" id="work-hours" name="workHours" inputmode="numeric" min="1" max="24" step="0.25"
+            value="8" required aria-describedby="work-hours-hint" />
           <small id="work-hours-hint" class="hint">Standaard 8 uur per dag, weekdoel 40 uur</small>
         </div>
 
@@ -101,4 +104,5 @@
 
   <script src="app.js" defer></script>
 </body>
+
 </html>
